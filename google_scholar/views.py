@@ -9,7 +9,7 @@ from google_scholar.models import Author
 
 class AuthorList(ListView):
     model=Author
-    template_name = 'google_scholar/author_list.html'
+    template_name = 'google_scholar/templates/bootstrap/author_list.html'
 
 class AuthorDetail(View):
     def get(self,request,pk):
