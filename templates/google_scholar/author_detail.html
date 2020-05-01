@@ -1,0 +1,27 @@
+{% extends 'google_scholar/base.html' %}
+
+{% block title %}
+    Author - {{ author }}
+{% endblock %}
+
+{% block content %}
+    <h2>{{ author }}</h2>
+
+    <section>
+        <table>
+            <tr>
+                <th>First Name:</th>
+                <td>{{ author.first_name }}</td>
+            </tr>
+            <tr>
+                <th>Last Name:</th>
+                <td>{{ author.last_name }}</td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h3>Articles</h3>
+
+    </section>
+{% endblock %}
