@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.urls import path
 
 from google_scholar.views import AuthorList, AuthorDetail, AuthorCreate, AuthorUpdate, AuthorDelete
+from django.views.generic import TemplateView
 
 urlpatterns = [
     # author
@@ -12,6 +13,7 @@ urlpatterns = [
     path('author/<int:pk>/update/',AuthorUpdate.as_view(),name='author_update_url'),
     path('author/<int:pk>/delete',AuthorDelete.as_view(),name='author_delete_url'),
 
+    path('index/',TemplateView.as_view(template_name='bootstrap/index.html'))
     # article
     # list-detail-create-delete-update
 
