@@ -1,0 +1,22 @@
+{% extends 'bootstrap/base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+ <div>
+     <h2>Error Deleting Author</h2>
+     <p>
+        You may not delete author {{ author }}. The
+        author currently have these articles:
+     </p>
+
+     <ul>
+         {% for article in articles %}
+         <li><a href="{{ article.get_absolute_url }}">{{ article }}</a></li>
+         {% endfor %}
+     </ul>
+     <p>
+        Return to <a href="{% url 'author_list_url' %}">Author List</a>.
+     </p>
+ </div>
+{% endblock %}
