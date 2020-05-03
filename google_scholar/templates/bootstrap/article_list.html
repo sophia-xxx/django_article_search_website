@@ -1,0 +1,51 @@
+{% extends 'bootstrap/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-3">
+        <h1 class="my-3" >Topic</h1>
+            <div class="list-group">
+              <a href="#" class="list-group-item active">Computer Science</a>
+              <a href="#" class="list-group-item">Biology</a>
+              <a href="#" class="list-group-item">Business</a>
+            </div>
+        </div>
+      <!-- /.col-lg-3 -->
+
+      <div class="col-lg-9">
+
+        <!-- /.card -->
+
+        <div class="card card-outline-secondary my-4">
+          <div class="card-header">
+            Article List
+          </div>
+          <div class="card-body">
+
+            {% for article in article_list %}
+                <h4>
+                    <a href="{{ article.get_absolute_url }}">{{ article }}</a>
+                </h4>
+                <p class="card-text"> {{ article.journal }}</p>
+                <small class="text-muted">Cited by: {{ article.cited_by }}</small>
+                <hr>
+            {% empty %}
+                <h4>There are currently no articles available.</h4>
+                <hr>
+            {% endfor %}
+
+            <a href="{% url 'article_create_url' %}" class="btn btn-success">Add Article</a>
+          </div>
+        </div>
+        <!-- /.card -->
+
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>
+
+  </div>
+  <!-- /.container -->
+
+ {% endblock %}

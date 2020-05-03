@@ -1,0 +1,93 @@
+{% extends 'bootstrap/base.html' %}
+{% load staticfiles %}
+{% block content %}
+  <!-- Page Content -->
+
+
+      <div class="card-body">
+        <table class="table">
+          <!-- title and content -->
+          <thead class="thead-light">
+            <tr>
+                <th scope="col">Title</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{ article.title }}</th>
+            </tr>
+          </tbody>
+
+          <!-- title and content -->
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Publish Year</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{ article.pub_year }}</th>
+            </tr>
+          </tbody>
+
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Citations</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{ article.citations }}</th>
+            </tr>
+          </tbody>
+
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Cited by</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{ article.cited_by }}</th>
+            </tr>
+          </tbody>
+
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Author</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{ article.author }}</th>
+            </tr>
+          </tbody>
+
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Journal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{ article.journal }}</th>
+            </tr>
+          </tbody>
+
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">URL</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+                <th scope="row">{{ article.pub_url }}</th>
+            </tr>
+          </tbody>
+
+        </table>
+        <button type="submit" class="btn btn-primary" onclick="location.href='{{ article.get_update_url }}'">Edit</button>
+        <button type="delete" class="btn btn-danger" onclick="location.href='{{ article.get_delete_url }}'">Delete</button>
+      </div>
+
+{% endblock %}

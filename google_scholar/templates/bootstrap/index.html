@@ -1,0 +1,50 @@
+{% extends 'bootstrap/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<!-- Jumbotron Header -->
+
+    <header class="jumbotron my-4">
+        <h1 class="display-4" align="center">Google Scholar Search</h1>
+        <p></p>
+      <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+          <form>
+            <div class="form-row">
+              <div class="col-12 col-md-9 mb-2 mb-md-0">
+                <input type="text" class="form-control form-control-lg" placeholder="Type the paper name...">
+              </div>
+              <div class="col-12 col-md-3">
+                <button type="submit" class="btn btn-block btn-lg btn-primary">Search</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+    </header>
+
+    <!-- Page Features -->
+
+    <div class="row text-center">
+
+      {% for journal in journal_list %}
+          {% ifnotequal journal.image_url '/' %}
+              <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card h-100">
+                    <a href="{{ journal.get_absolute_url }}">
+                    <img class="card-img-top" src="{{ journal.image_url }}" alt="" width="150" height="300">
+                    </a>
+                  <div class="card-body">
+
+                    <p class="card-text">{{ journal.introduction }}</p>
+                  </div>
+                  <div class="card-footer">
+                    <a href="{{ journal.get_absolute_url }}" class="btn btn-primary">Find Out More!</a>
+                  </div>
+                </div>
+              </div>
+          {% endifnotequal %}
+      {% endfor %}
+
+    </div>
+
+{% endblock %}

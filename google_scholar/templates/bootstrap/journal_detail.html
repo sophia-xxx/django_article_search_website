@@ -1,0 +1,73 @@
+{% extends 'bootstrap/base.html' %}
+{% load staticfiles %}
+{% block content %}
+  <!-- Page Content -->
+
+
+      <div class="card-body">
+        <img class="col-3" src={{ journal.image_url }} alt="" width=150 height=300>
+        <table class="table">
+          <!-- title and content -->
+          <thead class="thead-light">
+            <tr>
+                <th scope="col">Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{ journal.journal_name }}</th>
+            </tr>
+          </tbody>
+
+          <!-- title and content -->
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Establish Year</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{ journal.establish_year }}</th>
+            </tr>
+          </tbody>
+
+          <!-- title and content -->
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Introduction</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{ journal.introduction }}</th>
+            </tr>
+          </tbody>
+
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Articles</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+
+                <ul>
+                    {% for article in article_list %}
+                        <th scope="row">
+                            <a href="{{ article.get_absolute_url }}">{{ article }}</a>
+                        </th>
+                    {% empty %}
+                        <th scope="row"><em>There are currently no articles for this author.</em></th>
+                    {% endfor %}
+                </ul>
+
+            </tr>
+          </tbody>
+
+        </table>
+        <button type="submit" class="btn btn-primary" onclick="location.href='{{ journal.get_update_url }}'">Edit</button>
+        <button type="button" class="btn btn-primary" onclick="location.href='{% url 'article_create_url' %}'">Add Article</button>
+        <button type="delete" class="btn btn-danger" onclick="location.href='{{ journal.get_delete_url }}'">Delete</button>
+      </div>
+
+{% endblock %}

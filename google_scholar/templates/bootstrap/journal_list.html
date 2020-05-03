@@ -1,0 +1,40 @@
+{% extends 'bootstrap/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+  <!-- Page Content -->
+
+    <div class="row">
+
+
+      <div class="col-lg-13">
+
+        <!-- /.card -->
+
+        <div class="card card-outline-secondary my-4" style="width:1200px">
+          <div class="card-header">
+            Journal List
+          </div>
+          <div class="card-body">
+
+                {% for journal in journal_list %}
+                    <h5>
+                        <a href="{{ journal.get_absolute_url }}">{{ journal }}</a>
+                    </h5>
+                    <hr>
+                {% empty %}
+                    <h4>There are currently no journals available.</h4>
+                    <hr>
+                {% endfor %}
+
+
+            <a href="{% url 'journal_create_url' %}" class="btn btn-success">Add Journal</a>
+          </div>
+        </div>
+        <!-- /.card -->
+
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>
+{% endblock %}

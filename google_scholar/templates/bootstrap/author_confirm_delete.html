@@ -1,0 +1,17 @@
+{% extends 'bootstrap/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <form
+        action="{{ author.get_delete_url }}"
+        method="post">      <!--This is HTTP method-->
+        {% csrf_token %}    <!--This is Django defence against hacking-->
+        <p>
+            Are you sure that you want to delete author {{ author }}?
+        </p>
+
+        <button type="button" class="btn btn-primary" onclick="location.href='{{ author.get_absolute_url }}'">Cancel</button>
+        <button type="submit" class="btn btn-danger" >Delete</button>
+    </form>
+
+{% endblock %}

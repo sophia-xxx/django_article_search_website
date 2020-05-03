@@ -1,0 +1,42 @@
+{% extends 'bootstrap/base.html' %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+{% block content %}
+  <!-- Page Content -->
+
+    <div class="row">
+
+
+      <div class="col-lg-13">
+
+        <!-- /.card -->
+
+        <div class="card card-outline-secondary my-4" style="width:1200px">
+          <div class="card-header">
+            Author List
+          </div>
+          <div class="card-body">
+
+                {% for author in author_list %}
+                    <h5>
+                        <a href="{{ author.get_absolute_url }}">{{ author }}</a>
+                    </h5>
+                    <hr>
+                {% empty %}
+                    <h4>There are currently no authors available.</h4>
+                    <hr>
+                {% endfor %}
+
+
+            <a href="{% url 'author_create_url' %}" class="btn btn-success">Add Author</a>
+          </div>
+        </div>
+        <!-- /.card -->
+
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>
+{% endblock %}

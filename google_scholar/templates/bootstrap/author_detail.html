@@ -1,0 +1,103 @@
+{% extends 'bootstrap/base.html' %}
+{% load staticfiles %}
+{% block content %}
+  <!-- Page Content -->
+
+
+      <div class="card-body">
+        <table class="table">
+          <!-- title and content -->
+          <thead class="thead-light">
+            <tr>
+                <th scope="col">First Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{ author.first_name }}</th>
+            </tr>
+          </tbody>
+
+          <!-- title and content -->
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Last Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{ author.last_name }}</th>
+            </tr>
+          </tbody>
+
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Birth Year</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{ author.last_name }}</th>
+            </tr>
+          </tbody>
+
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Birth Year</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{ author.birth_year }}</th>
+            </tr>
+          </tbody>
+
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Affiliation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{ author.affiliation }}</th>
+            </tr>
+          </tbody>
+
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Country</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{ author.country }}</th>
+            </tr>
+          </tbody>
+
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Articles</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+
+                <ul>
+                    {% for article in article_list %}
+                        <th scope="row">
+                            <a href="{{ article.get_absolute_url }}">{{ article }}</a>
+                        </th>
+                    {% empty %}
+                        <th scope="row"><em>There are currently no articles for this author.</em></th>
+                    {% endfor %}
+                </ul>
+
+            </tr>
+          </tbody>
+
+        </table>
+        <button type="submit" class="btn btn-primary" onclick="location.href='{{ author.get_update_url }}'">Edit</button>
+        <button type="delete" class="btn btn-danger" onclick="location.href='{{ author.get_delete_url }}'">Delete</button>
+      </div>
+
+{% endblock %}
