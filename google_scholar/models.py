@@ -13,6 +13,12 @@ class Author(models.Model):
     def get_absolute_url(self):
         return reverse('author_detail_url',
                        kwargs={'pk': self.pk})
+    def get_update_url(self):
+        return reverse('author_update_url',
+                       kwargs={'pk': self.pk})
+    def get_delete_url(self):
+        return reverse('author_delete_url',
+                       kwargs={'pk': self.pk})
 
 
     def __str__(self):
@@ -27,6 +33,16 @@ class Topic(models.Model):
     # article list  one-to-many
     def __str__(self):
         return '%s' %(self.topic_name)
+
+    def get_absolute_url(self):
+        return reverse('author_detail_url',
+                       kwargs={'pk': self.pk})
+    def get_update_url(self):
+        return reverse('author_update_url',
+                       kwargs={'pk': self.pk})
+    def get_delete_url(self):
+        return reverse('author_delete_url',
+                       kwargs={'pk': self.pk})
     class Meta:
         ordering=['topic_name']
 
@@ -34,32 +50,53 @@ class Journal(models.Model):
     journal_id=models.AutoField(primary_key=True)
     journal_name=models.CharField(max_length=100)
     establish_year=models.IntegerField()
-    topic=models.ForeignKey(Topic,related_name='journals',on_delete=models.PROTECT)
+    image_url=models.CharField(max_length=100,default='/')
+    introduction=models.CharField(max_length=1000,default='/')
+    #topic=models.ForeignKey(Topic,related_name='journals',on_delete=models.PROTECT,default=0)
     # to-do article list   one-to-many
     def __str__(self):
         return '%s' %(self.journal_name)
+
     class Meta:
         ordering=['journal_name']
         unique_together=(('journal_name','establish_year'))
 
+    def get_absolute_url(self):
+        return reverse('journal_detail_url',
+                       kwargs={'pk': self.pk})
+    def get_update_url(self):
+        return reverse('journal_update_url',
+                       kwargs={'pk': self.pk})
+    def get_delete_url(self):
+        return reverse('journal_delete_url',
+                       kwargs={'pk': self.pk})
 
 
 class Article(models.Model):
     article_id=models.AutoField(primary_key=True)
     title=models.CharField(max_length=200)
     pub_year=models.IntegerField()
-    pub_url=models.IntegerField(unique=True)
+    pub_url=models.CharField(max_length=200,unique=True)
     citations=models.IntegerField()
     cited_by=models.IntegerField()
     author=models.ForeignKey(Author,related_name='articles',on_delete=models.PROTECT)
     journal=models.ForeignKey(Journal,related_name='articles',on_delete=models.PROTECT)
-    topic=models.ForeignKey(Topic,related_name='articles',on_delete=models.PROTECT)
+    topic=models.ForeignKey(Topic,related_name='articles',on_delete=models.PROTECT,default=None,null=True)
 
     def __str__(self):
-        return '%s_%s' %(self.title,self.journal)
+        return '%s' %(self.title)
     class Meta:
         ordering=['-pub_year']
 
+    def get_absolute_url(self):
+        return reverse('article_detail_url',
+                       kwargs={'pk': self.pk})
+    def get_update_url(self):
+        return reverse('article_update_url',
+                       kwargs={'pk': self.pk})
+    def get_delete_url(self):
+        return reverse('article_delete_url',
+                       kwargs={'pk': self.pk})
 
 
 

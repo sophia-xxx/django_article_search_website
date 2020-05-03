@@ -2,10 +2,15 @@
 from django.contrib import admin
 from django.urls import path
 
-from google_scholar.views import AuthorList, AuthorDetail, AuthorCreate, AuthorUpdate, AuthorDelete
+from google_scholar.views import AuthorList, AuthorDetail, AuthorCreate, AuthorUpdate, AuthorDelete, JournalList, \
+    JournalDetail, JournalCreate, JournalUpdate, JournalDelete, ArticleDetail, ArticleCreate, ArticleUpdate, \
+    ArticleDelete, ArticleList, IndexView
 from django.views.generic import TemplateView
 
 urlpatterns = [
+
+    path('index/', IndexView.as_view(),name='index_url'),
+
     # author
     path('author/',AuthorList.as_view(),name='author_list_url'),
     path('author/<int:pk>/',AuthorDetail.as_view(),name='author_detail_url'),
@@ -13,14 +18,18 @@ urlpatterns = [
     path('author/<int:pk>/update/',AuthorUpdate.as_view(),name='author_update_url'),
     path('author/<int:pk>/delete',AuthorDelete.as_view(),name='author_delete_url'),
 
-    path('index/',TemplateView.as_view(template_name='bootstrap/index.html'))
     # article
     # list-detail-create-delete-update
-
-
-    # topic
-    # list-detail-create-delete-update
+    path('article/',ArticleList.as_view(),name='article_list_url' ),
+    path('article/<int:pk>/',ArticleDetail.as_view(),name='article_detail_url'),
+    path('article/create/',ArticleCreate.as_view(),name='article_create_url'),
+    path('article/<int:pk>/update/',ArticleUpdate.as_view(),name='article_update_url'),
+    path('article/<int:pk>/delete',ArticleDelete.as_view(),name='article_delete_url'),
 
     # journal
-    # list-detail-create-delete-update
+    path('journal/',JournalList.as_view(),name='journal_list_url'),
+    path('journal/<int:pk>/',JournalDetail.as_view(),name='journal_detail_url'),
+    path('journal/create/',JournalCreate.as_view(),name='journal_create_url'),
+    path('journal/<int:pk>/update/',JournalUpdate.as_view(),name='journal_update_url'),
+    path('journal/<int:pk>/delete',JournalDelete.as_view(),name='journal_delete_url'),
 ]
