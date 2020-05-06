@@ -1,0 +1,22 @@
+{% extends 'google_scholar/base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+ <div>
+     <h2>Error Deleting Topic</h2>
+     <p>
+        You may not delete topic {{ topic }}. The
+        topic currently have these articles:
+     </p>
+
+     <ul>
+         {% for article in articles %}
+         <li><a href="{{ article.get_absolute_url }}">{{ article }}</a></li>
+         {% endfor %}
+     </ul>
+     <p>
+        Return to <a href="{% url 'topic_list_url' %}">Topic List</a>.
+     </p>
+ </div>
+{% endblock %}

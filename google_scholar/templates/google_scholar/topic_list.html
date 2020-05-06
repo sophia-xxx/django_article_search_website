@@ -1,0 +1,43 @@
+{% extends 'google_scholar/base.html' %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+{% block content %}
+  <!-- Page Content -->
+
+    <div class="row">
+
+
+      <div class="col-lg-13">
+
+        <!-- /.card -->
+
+        <div class="card card-outline-secondary my-4" style="width:1200px">
+          <div class="card-header">
+            Topic List
+          </div>
+          <div class="card-body">
+
+                {% for topic in topic_list %}
+                    <h5>
+                        <a href="{{ topic.get_absolute_url }}">{{ topic }}</a>
+                    </h5>
+                    <hr>
+                {% empty %}
+                    <h4>There are currently no topics available.</h4>
+                    <hr>
+                {% endfor %}
+
+            {% if perms.google_scholar.add_topic %}
+            <a href="{% url 'topic_create_url' %}" class="btn btn-success">Add Topic</a>
+          {% endif %}
+          </div>
+        </div>
+        <!-- /.card -->
+
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>
+{% endblock %}

@@ -4,7 +4,7 @@ from django.urls import path
 
 from google_scholar.views import AuthorList, AuthorDetail, AuthorCreate, AuthorUpdate, AuthorDelete, JournalList, \
     JournalDetail, JournalCreate, JournalUpdate, JournalDelete, ArticleDetail, ArticleCreate, ArticleUpdate, \
-    ArticleDelete, ArticleList, IndexView
+    ArticleDelete, ArticleList, IndexView, TopicList, TopicDetail, TopicCreate, TopicUpdate, TopicDelete
 from django.views.generic import TemplateView
 
 urlpatterns = [
@@ -32,4 +32,11 @@ urlpatterns = [
     path('journal/create/',JournalCreate.as_view(),name='journal_create_url'),
     path('journal/<int:pk>/update/',JournalUpdate.as_view(),name='journal_update_url'),
     path('journal/<int:pk>/delete',JournalDelete.as_view(),name='journal_delete_url'),
+
+    # topic
+    path('topic/',TopicList.as_view(),name='topic_list_url'),
+    path('topic/<int:pk>/',TopicDetail.as_view(),name='topic_detail_url'),
+    path('topic/create/',TopicCreate.as_view(),name='topic_create_url'),
+    path('topic/<int:pk>/update/',TopicUpdate.as_view(),name='topic_update_url'),
+    path('topic/<int:pk>/delete',TopicDelete.as_view(),name='topic_delete_url'),
 ]

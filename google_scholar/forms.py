@@ -1,6 +1,6 @@
 from django import forms
 
-from google_scholar.models import Author, Journal, Article
+from google_scholar.models import Author, Journal, Article, Topic
 
 
 class AuthorForm(forms.ModelForm):
@@ -44,3 +44,11 @@ class ArticleForm(forms.ModelForm):
 
     def clean_pub_url(self):
         return self.cleaned_data['pub_url'].strip()
+
+class TopicForm(forms.ModelForm):
+    class Meta:
+        model=Topic
+        fields='__all__'
+
+    def clean_topic_name(self):
+        return self.cleaned_data['topic_name'].strip()

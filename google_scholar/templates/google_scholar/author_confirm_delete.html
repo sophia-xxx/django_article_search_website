@@ -1,4 +1,4 @@
-{% extends 'bootstrap/base.html' %}
+{% extends 'google_scholar/base.html' %}
 {% load staticfiles %}
 
 {% block content %}
@@ -11,7 +11,7 @@
         </p>
 
         <button type="button" class="btn btn-primary" onclick="location.href='{{ author.get_absolute_url }}'">Cancel</button>
-        <button type="submit" class="btn btn-danger" >Delete</button>
+        <button type="submit" >Delete</button>
     </form>
 
 {% endblock %}

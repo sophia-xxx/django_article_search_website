@@ -1,10 +1,10 @@
-{% extends 'bootstrap/base.html' %}
+{% extends 'google_scholar/base.html' %}
 {% load staticfiles %}
 {% block content %}
 
   <!-- Page Content -->
       <div class="card-body">
-          <form action="{{ article.get_update_url }}" method="post">
+          <form action="{{ topic.get_update_url }}" method="post">
               {% csrf_token %}    <!--This is Django defence against hacking-->
               {{ form.as_p }}
 

@@ -24,6 +24,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
+
       <a class="navbar-brand" href="{% url 'index_url' %}">Google Scholar Search</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -35,22 +36,51 @@
               <span class="sr-only">(current)</span>
             </a>
           </li>
+            {% if perms.google_scholar.view_article %}
           <li class="nav-item active">
             <a class="nav-link" href="{% url 'article_list_url' %}">Article</a>
           </li>
-            <li class="nav-item active">
+            {% endif %}
+          {% if perms.google_scholar.view_author %}
+          <li class="nav-item active">
             <a class="nav-link" href="{% url 'author_list_url' %}">Author</a>
           </li>
+          {% endif %}
+        {% if perms.google_scholar.view_journal %}
           <li class="nav-item active">
             <a class="nav-link" href="{% url 'journal_list_url' %}">Journal</a>
           </li>
+        {% endif %}
+
+        {% if perms.google_scholar.view_topic %}
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'topic_list_url' %}">Topic</a>
+          </li>
+        {% endif %}
         </ul>
       </div>
+        <div class="status row">
+            <div class="offset-by-eight four columns">
+                <ul class="inline">
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'logout_urlpattern' %}">
+                            Log Out, {{ user.get_username }}</a></li>
+                    {% else %}
+                        <li><a href="{% url 'login_urlpattern' %}">
+                            Log In</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
     </div>
+
   </nav>
+
+
 
   <!-- Page Content -->
   <div class="container">
+
     {% block content %}
 
     {% endblock %}

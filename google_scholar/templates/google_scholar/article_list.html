@@ -1,23 +1,15 @@
-{% extends 'bootstrap/base.html' %}
+{% extends 'google_scholar/base.html' %}
 {% load staticfiles %}
 
 {% block content %}
     <div class="row">
-        <div class="col-lg-3">
-        <h1 class="my-3" >Topic</h1>
-            <div class="list-group">
-              <a href="#" class="list-group-item active">Computer Science</a>
-              <a href="#" class="list-group-item">Biology</a>
-              <a href="#" class="list-group-item">Business</a>
-            </div>
-        </div>
-      <!-- /.col-lg-3 -->
 
-      <div class="col-lg-9">
+
+      <div class="col-lg-12">
 
         <!-- /.card -->
 
-        <div class="card card-outline-secondary my-4">
+        <div class="card card-outline-secondary my-4" >
           <div class="card-header">
             Article List
           </div>
@@ -34,8 +26,9 @@
                 <h4>There are currently no articles available.</h4>
                 <hr>
             {% endfor %}
-
-            <a href="{% url 'article_create_url' %}" class="btn btn-success">Add Article</a>
+            {% if perms.google_scholar.add_article %}
+                <a href="{% url 'article_create_url' %}" class="btn btn-success">Add Article</a>
+            {% endif %}
           </div>
         </div>
         <!-- /.card -->

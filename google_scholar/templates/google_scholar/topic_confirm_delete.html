@@ -1,16 +1,16 @@
-{% extends 'bootstrap/base.html' %}
+{% extends 'google_scholar/base.html' %}
 {% load staticfiles %}
 
 {% block content %}
     <form
-        action="{{ journal.get_delete_url }}"
+        action="{{ topic.get_delete_url }}"
         method="post">      <!--This is HTTP method-->
         {% csrf_token %}    <!--This is Django defence against hacking-->
         <p>
-            Are you sure that you want to delete journal {{ journal }}?
+            Are you sure that you want to delete topic {{ topic }}?
         </p>
 
-        <button type="button" class="btn btn-primary" onclick="location.href='{{ journal.get_absolute_url }}'">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="location.href='{{ topic.get_absolute_url }}'">Cancel</button>
         <button type="submit" class="btn btn-danger" >Delete</button>
     </form>
 

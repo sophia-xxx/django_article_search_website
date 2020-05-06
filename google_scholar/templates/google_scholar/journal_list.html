@@ -1,4 +1,4 @@
-{% extends 'bootstrap/base.html' %}
+{% extends 'google_scholar/base.html' %}
 {% load staticfiles %}
 
 {% block content %}
@@ -27,8 +27,9 @@
                     <hr>
                 {% endfor %}
 
-
+            {% if perms.google_scholar.add_journal %}
             <a href="{% url 'journal_create_url' %}" class="btn btn-success">Add Journal</a>
+          {% endif %}
           </div>
         </div>
         <!-- /.card -->

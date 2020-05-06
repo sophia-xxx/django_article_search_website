@@ -1,0 +1,81 @@
+{% extends 'google_scholar/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-lg-3">
+        <h1 class="my-3" >Topic</h1>
+            <div class="list-group">
+              {% for topic_single in topic_list %}
+                {% ifequal topic_single topic %}
+                    <a href="#" class="list-group-item active">{{ topic_single }}</a>
+                {% endifequal %}
+                {% ifnotequal topic_single topic %}
+                    <a href="{{ topic_single.get_absolute_url }}" class="list-group-item">{{ topic_single }}</a>
+                {% endifnotequal %}
+              {% empty %}
+                <h5>No topic</h5>
+              {% endfor %}
+            </div>
+        </div>
+      <!-- /.col-lg-3 -->
+
+      <div class="col-lg-5">
+
+        <!-- /.card -->
+
+        <div class="card card-outline-secondary my-4">
+          <div class="card-header">
+            Article List
+          </div>
+          <div class="card-body">
+
+            {% for article in article_list %}
+                <h5>
+                    <a href="{{ article.get_absolute_url }}">{{ article }}</a>
+                </h5>
+                <p class="card-text"> {{ article.journal }}</p>
+                <small class="text-muted">Cited by: {{ article.cited_by }}</small>
+                <hr>
+            {% empty %}
+                <h4>There are currently no articles available.</h4>
+                <hr>
+            {% endfor %}
+          </div>
+        </div>
+        <!-- /.card -->
+
+      </div>
+      <!-- /.col-lg-9 -->
+        <div class="col-lg-4">
+
+        <!-- /.card -->
+
+            <div class="card card-outline-secondary my-4">
+              <div class="card-header">
+                Author List
+              </div>
+              <div class="card-body">
+
+                    {% for author in author_list %}
+                        <h5>
+                            <a href="{{ author.get_absolute_url }}">{{ author }}</a>
+                        </h5>
+                        <hr>
+                    {% empty %}
+                        <h4>There are currently no authors available.</h4>
+                        <hr>
+                    {% endfor %}
+              </div>
+            </div>
+        <!-- /.card -->
+
+        </div>
+
+    </div>
+    <p></p>
+  </div>
+  <!-- /.container -->
+
+ {% endblock %}

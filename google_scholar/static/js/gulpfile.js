@@ -31,8 +31,8 @@ function clean() {
 // Bring third party dependencies from node_modules into vendor directory
 function modules() {
   // Bootstrap
-  var bootstrap = gulp.src('./node_modules/bootstrap/dist/**/*')
-    .pipe(gulp.dest('./vendor/bootstrap'));
+  var bootstrap = gulp.src('./node_modules/google_scholar/dist/**/*')
+    .pipe(gulp.dest('./vendor/google_scholar'));
   // jQuery
   var jquery = gulp.src([
       './node_modules/jquery/dist/*',
