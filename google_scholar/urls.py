@@ -5,11 +5,13 @@ from django.urls import path
 from google_scholar.views import AuthorList, AuthorDetail, AuthorCreate, AuthorUpdate, AuthorDelete, JournalList, \
     JournalDetail, JournalCreate, JournalUpdate, JournalDelete, ArticleDetail, ArticleCreate, ArticleUpdate, \
     ArticleDelete, ArticleList, IndexView, TopicList, TopicDetail, TopicCreate, TopicUpdate, TopicDelete
-from django.views.generic import TemplateView
+
+from .views import search
 
 urlpatterns = [
 
     path('index/', IndexView.as_view(),name='index_url'),
+    path('results/',search,name='search_url'),
 
     # author
     path('author/',AuthorList.as_view(),name='author_list_url'),

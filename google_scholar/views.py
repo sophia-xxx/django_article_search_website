@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import View
@@ -210,3 +211,13 @@ class TopicDelete(LoginRequiredMixin,PermissionRequiredMixin,View):
         topic = get_object_or_404(Topic, pk=pk)
         topic.delete()
         return redirect('topic_list_url')
+
+
+def search(request):
+    template='google_scholar/article_list.html'
+    query=request.GET.get('q')
+    article_list=Article.objects.filter(Q(title__icontains=query))
+    context={
+        'article_list':article_list
+    }
+    return render(request,template,context)
